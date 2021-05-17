@@ -1,4 +1,4 @@
-FROM python:slim
+FROM ghcr.io/iamliquidx/mirrorx
 ARG MEGA_SDK_VERSION="latest"
 ENV SDK_VER=$MEGA_SDK_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
@@ -18,5 +18,4 @@ RUN echo Version = v${SDK_VER} && \
     git checkout v$VERSION && ./autogen.sh && \
     ./configure --disable-silent-rules --enable-python --with-sodium --with-python3 --disable-examples && \
     make -j$(nproc --all) && \
-    cd bindings/python/ && python3 setup.py bdist_wheel && \
-    cd dist/ && pip3 install --no-cache-dir megasdk-*.whl
+    cd bindings/python/ && python3 setup.py bdist_wheel
