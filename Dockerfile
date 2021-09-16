@@ -6,7 +6,7 @@ WORKDIR /
 RUN apt-get -qq update && \
     apt-get -qq install -y \
                  git g++ gcc autoconf automake curl \
-                 m4 libtool qt4-qmake make libqt4-dev libcurl4-openssl-dev \
+                 m4 libtool make libcurl4-openssl-dev \
                  libcrypto++-dev libsqlite3-dev libc-ares-dev \
                  libsodium-dev  \
                  libssl-dev swig && \
