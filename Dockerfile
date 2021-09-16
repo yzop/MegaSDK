@@ -1,4 +1,4 @@
-FROM python:2.7.18-slim-buster
+FROM python:slim
 ARG MEGA_SDK_VERSION="latest"
 ENV SDK_VER=$MEGA_SDK_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
