@@ -1,4 +1,4 @@
-FROM python:slim
+FROM ghcr.io/iamliquidx/mirrorx:latest
 ARG MEGA_SDK_VERSION="latest"
 ENV SDK_VER=$MEGA_SDK_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
