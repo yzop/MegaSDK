@@ -1,4 +1,4 @@
-FROM python:3.8-slim
+FROM debian:buster-slim
 ARG MEGA_SDK_VERSION="latest"
 ENV SDK_VER=$MEGA_SDK_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,8 +9,10 @@ RUN apt-get -qq update && \
                  m4 libtool make libcurl4-openssl-dev \
                  libcrypto++-dev libsqlite3-dev libc-ares-dev \
                  libsodium-dev zlib1g-dev \
-                 libssl-dev swig && \
+                 libssl-dev swig python python3 python3-pip && \
     apt-get -y autoremove
+    
+RUN pip3 install setuptools
 
 RUN echo Version = v${SDK_VER} && \
     export VERSION=${SDK_VER} && \
