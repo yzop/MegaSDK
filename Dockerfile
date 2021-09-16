@@ -1,4 +1,4 @@
-FROM debian:buster-slim
+FROM python:2.7.18-slim-buster
 ARG MEGA_SDK_VERSION="latest"
 ENV SDK_VER=$MEGA_SDK_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
@@ -9,10 +9,8 @@ RUN apt-get -qq update && \
                  m4 libtool make libcurl4-openssl-dev \
                  libcrypto++-dev libsqlite3-dev libc-ares-dev \
                  libsodium-dev zlib1g-dev \
-                 libssl-dev swig python python3 python3-pip && \
+                 libssl-dev swig && \
     apt-get -y autoremove
-    
-RUN pip3 install setuptools
 
 RUN echo Version = v${SDK_VER} && \
     export VERSION=${SDK_VER} && \
@@ -20,4 +18,4 @@ RUN echo Version = v${SDK_VER} && \
     git checkout v$VERSION && ./autogen.sh && \
     ./configure --disable-silent-rules --enable-python --with-sodium --without-freeimage --disable-examples && \
     make -j$(nproc --all) && \
-    cd bindings/python/ && python3 setup.py bdist_wheel
+    cd bindings/python/ && python setup.py bdist_wheel
