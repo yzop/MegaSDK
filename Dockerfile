@@ -1,4 +1,4 @@
-FROM python:slim
+FROM python:3.8-slim
 ARG MEGA_SDK_VERSION="latest"
 ENV SDK_VER=$MEGA_SDK_VERSION
 ENV DEBIAN_FRONTEND=noninteractive
@@ -8,7 +8,7 @@ RUN apt-get -qq update && \
                  git g++ gcc autoconf automake curl \
                  m4 libtool make libcurl4-openssl-dev \
                  libcrypto++-dev libsqlite3-dev libc-ares-dev \
-                 libsodium-dev  \
+                 libsodium-dev zlib1g-dev \
                  libssl-dev swig && \
     apt-get -y autoremove
 
